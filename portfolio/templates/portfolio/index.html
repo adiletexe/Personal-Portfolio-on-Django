@@ -1,0 +1,21 @@
+{% extends 'portfolio/template.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<a href="{% static 'portfolio/images/presentationHackathon.pdf' %}">PDF</a>
+<a href="{% url 'blog:all_blogs' %}">Blogs</a>
+{% for elem in projects %}
+<h1>Adilet's Portfolio</h1>
+<img src="{% static 'portfolio/images/profilpicture.jpg' %}">
+<h2> {{ elem.title }} </h2>
+<p> {{ elem.description }} </p>
+<img src="{{ elem.image.url }}">
+{% if elem.url %}
+<br>
+<a href="{{ elem.url }}">Link</a>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

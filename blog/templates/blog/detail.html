@@ -1,0 +1,10 @@
+{% extends 'portfolio/template.html' %}
+{% block content %}
+    <h2> {{ blog.title }} </h2> <br>
+    {{ blog.date|date:'F jS Y' }}
+    <h4>{{ blog.description|safe }}</h4> <br>
+    {% if blog.image %}
+    <img src="{{ blog.image.url }}" alt="image is not loading"> <br>
+    {% endif %}
+    <p>{{ blog.text|safe  }}</p> <br>
+{% endblock %}

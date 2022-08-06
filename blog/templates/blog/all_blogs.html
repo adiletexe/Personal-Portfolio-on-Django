@@ -1,0 +1,12 @@
+{% extends 'portfolio/template.html' %}
+{% block content %}
+    Here are your blogs
+    <a href="{% url 'home' %}">Home</a>
+    <h3>Adilet has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h3>
+    {% for elem in blogs %}
+    <a href="{% url 'blog:detail' elem.id %}"><h2> {{ elem.title }} </h2></a>
+    <h5> {{ elem.date|date:'M d Y'|upper }}</h5>
+    <p> {{ elem.description|truncatechars:100|striptags }} </p>
+    {% endfor %}
+
+{% endblock %}
