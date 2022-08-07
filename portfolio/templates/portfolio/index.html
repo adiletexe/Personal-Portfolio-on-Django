@@ -4,18 +4,40 @@
 
 
 {% block content %}
-<a href="{% static 'portfolio/images/presentationHackathon.pdf' %}">PDF</a>
-<a href="{% url 'blog:all_blogs' %}">Blogs</a>
-{% for elem in projects %}
-<h1>Adilet's Portfolio</h1>
-<img src="{% static 'portfolio/images/profilpicture.jpg' %}">
-<h2> {{ elem.title }} </h2>
-<p> {{ elem.description }} </p>
-<img src="{{ elem.image.url }}">
-{% if elem.url %}
-<br>
-<a href="{{ elem.url }}">Link</a>
-{% endif %}
-{% endfor %}
+<div class="container-fluid">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-9 text-center">
+            <h1>Adilet's Portfolio</h1>
+        </div>
+    </div>
+    <img src="{% static 'portfolio/images/profilpicture.jpg' %}">
+    <main>
+    <div class="col-md-11">
+            <div class="row">
+                {% for elem in projects %}
+                <div class="col-md-4">
+                    <div class="card my-4">
+                        {% if elem.url %}
+                            <a href="{{ elem.url }}"><img src="{{ elem.image.url }}"></a>
+                        {% else %}
+                            <img src="{{ elem.image.url }}">
+                        {% endif %}
+                        <div class="textinside">
+                            <h5> {{ elem.title }} </h5>
+                            <p> {{ elem.description }} </p>
+                        </div>
+                    </div>
+                </div>
+
+                {% empty %}
+                <div class="else">
+                    <h3>Unfortunately, there are no items founded... Probably, author didn't chose category, so try checking category 'all' or come back to site later.</h3>
+                    <h1>...</h1>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+    </main>
+</div>
 
 {% endblock %}
